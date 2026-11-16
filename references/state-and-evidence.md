@@ -32,7 +32,7 @@
 | 覆盖 | not_tested / tested / partial / not_applicable / blocked |
 | 本地任务 | running / completed / partial / waiting_input / cancelled |
 
-`not_reproduced` 仅指已执行的具体条件；`tested` 不等于目标无漏洞。`not_applicable` 需要目标不存在该能力等依据，缺少账号应为 blocked。宿主状态枚举不同则按实际 schema 映射，在 conclusion/coverage 保留原始语义，不编造 API 状态。必需项缺失时不可映射为 completed。
+`not_reproduced` 仅指已执行的具体条件；`tested` 不等于目标无漏洞。`not_applicable` 需要目标不存在该能力等依据。缺少账号只把**依赖该账号的那个实验单元/分支**标为 blocked（例如必须由他人账号终态回查的那一步），不得据此把「越权是否可判定」整体判为 blocked 或停测：单账号可先用有界抽样枚举与公开佐证推进，见 [对象与功能授权](by-type/idor-access-control.md)。宿主状态枚举不同则按实际 schema 映射，在 conclusion/coverage 保留原始语义，不编造 API 状态。必需项缺失时不可映射为 completed。
 
 多分支任务逐个保存假设与覆盖状态；有可执行分支且正在继续时，任务仍为 running，不能因一个分支 blocked 就把整个任务标为 partial。partial 表示本次执行已停止并交付部分成果。汇总状态不能覆盖分支明细。
 
