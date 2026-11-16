@@ -37,13 +37,14 @@
 ## 自检与检索
 
 ```bash
-python3 scripts/check_structure.py      # 校验索引与链接完整性、叶子体积、语料指针位置
-python3 scripts/search_research.py -h   # 检索本地语料元数据（不联网、不抓取来源）
+python3 scripts/check_structure.py       # 校验索引与链接完整性、叶子体积、语料指针位置
+python3 scripts/test_threat_modeling.py  # 回归四组合成 A/B 调度场景；不联网、不测真实模型
+python3 scripts/search_research.py -h    # 检索本地语料元数据（不联网、不抓取来源）
 ```
 
 `scripts/build_research_index.py` 用于为一个固定的本地语料检出重建索引，同样不联网、不执行来源内容。
 
-结构校验通过时应输出「索引完整性检查通过」，退出码为 0。改动文档后建议先跑一次再提交。
+结构校验通过时应输出「索引完整性检查通过」，调度回归通过时应输出「全部协议锚点、A/B 场景与 no-op 消融断言通过」，退出码均为 0。合成场景只验证协议锚点和调度策略，不证明真实模型行为已经改善；文档改动后先跑两项检查再提交。
 
 ## 维护约定
 
